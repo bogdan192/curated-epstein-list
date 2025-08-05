@@ -1,0 +1,28 @@
+# PDF processing
+PyPDF2==3.0.1
+pdfplumber==0.10.0
+
+# Excel handling
+openpyxl==3.1.2
+pandas==2.2.0
+
+# Web scraping and API calls
+requests==2.31.0
+beautifulsoup4==4.12.3
+
+# Natural Language Processing for name extraction
+spacy==3.7.2
+nltk==3.8.1
+
+# AI API integration
+openai==1.12.0
+
+# CLI interface
+click==8.1.7
+
+# Configuration management
+python-dotenv==1.0.1
+
+# Logging and utilities
+colorama==0.4.6
+tqdm==4.66.1
