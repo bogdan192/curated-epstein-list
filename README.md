@@ -41,6 +41,33 @@ GOOGLE_API_KEY=your_google_api_key_here
 GOOGLE_CSE_ID=your_google_custom_search_engine_id_here
 ```
 
+## Quick Start
+
+1. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Run setup**:
+   ```bash
+   python main.py setup
+   ```
+
+3. **Extract names from a PDF**:
+   ```bash
+   python main.py extract your_document.pdf
+   ```
+
+4. **Extract names without enrichment (faster)**:
+   ```bash
+   python main.py extract your_document.pdf --no-enrichment
+   ```
+
+5. **Test with sample names**:
+   ```bash
+   python main.py enrich "John Doe" "Jane Smith"
+   ```
+
 ## Usage
 
 ### Basic PDF Processing

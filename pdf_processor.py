@@ -92,14 +92,26 @@ class PDFProcessor:
         if len(parts) < 2:
             return False
         
-        # Skip common non-names
+        # Skip common non-names and titles
         skip_words = {
             'United States', 'New York', 'Los Angeles', 'Court', 'Department',
             'Company', 'Corporation', 'Inc', 'LLC', 'Ltd', 'University',
-            'College', 'School', 'Hospital', 'Medical', 'Center'
+            'College', 'School', 'Hospital', 'Medical', 'Center', 'Board Members',
+            'Executive Team', 'Chief Executive', 'Chief Financial', 'Chief Technology',
+            'Chief Executive Officer', 'Chief Financial Officer', 'Chief Technology Officer',
+            'Legal Counsel', 'Strategic Advisor', 'External Consultant'
         }
         
         if any(word in name for word in skip_words):
+            return False
+        
+        # Skip common titles
+        titles = {'Chief', 'Officer', 'Executive', 'Financial', 'Technology', 'Legal', 
+                  'Strategic', 'External', 'Board', 'Members', 'Team', 'Counsel', 
+                  'Advisor', 'Consultant', 'Chairman', 'Director', 'President'}
+        
+        name_words = set(name.split())
+        if len(name_words.intersection(titles)) > 0:
             return False
         
         return True
@@ -181,6 +193,12 @@ class PDFProcessor:
                 return self.process_pdf_file(input_path)
             elif input_path.suffix.lower() == '.zip':
                 return self.process_archive(input_path)
+            elif input_path.suffix.lower() == '.txt':
+                # Handle text files for testing
+                print(f"Processing text file: {input_path.name}")
+                with open(input_path, 'r', encoding='utf-8') as f:
+                    text = f.read()
+                return self.extract_names_from_text(text)
             else:
                 raise ValueError(f"Unsupported file type: {input_path.suffix}")
         elif input_path.is_dir():
